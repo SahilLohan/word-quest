@@ -17,6 +17,16 @@ const WordGame = () => {
     const [displayWord, setDisplayWord] = useState(false); 
     const [chances, setChances] = useState(3);
     const [wrongGuesses, setWrongGuesses] = useState(0); 
+
+    const guessFunction = () => { 
+        if (checkWordGuessedFunction()) { 
+            setMsg("Congo! You have guessed the word correctly!"); 
+        } else { 
+            setMsg("You made a Wrong Guess!. Try again!"); 
+            setDisplayWord(true); 
+        } 
+    }; 
+    
     const guessFunctionRef = useRef(guessFunction);
 
     useEffect(() => {
@@ -28,6 +38,8 @@ const WordGame = () => {
         }
     }, [wrongGuesses, guessFunctionRef]);
   
+
+
     const letterSelectFunction = (letter) => { 
         if (!chosenLetters.includes(letter)) { 
             setChosenLetters([...chosenLetters, letter]); 
@@ -73,14 +85,6 @@ const WordGame = () => {
         return wordData.word.split("").every((letter) => chosenLetters.includes(letter)); 
     }; 
   
-    const guessFunction = () => { 
-        if (checkWordGuessedFunction()) { 
-            setMsg("Congo! You have guessed the word correctly!"); 
-        } else { 
-            setMsg("You made a Wrong Guess!. Try again!"); 
-            setDisplayWord(true); 
-        } 
-    }; 
   
     const restartGameFunction = () => { 
         setWordData(getRandomWord()); 
