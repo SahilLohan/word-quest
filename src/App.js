@@ -71,7 +71,7 @@ const WordGame = () => {
             <button 
                 key={index} 
                 onClick={() => letterSelectFunction(letter)} 
-                disabled={chosenLetters.includes(letter)} 
+                disabled={chosenLetters.includes(letter) || displayWord} 
                 className={`letter-button ${ 
                     chosenLetters.includes(letter) ? "selected" : ""
                 }`} 
@@ -128,7 +128,7 @@ const WordGame = () => {
                     </button> 
                     <button 
                         onClick={removeCharacterFunction} 
-                        disabled={!chosenLetters.length} 
+                        disabled={!chosenLetters.length && !displayWord} 
                         className="remove-button"
                     > 
                         Remove Letter 
@@ -141,7 +141,7 @@ const WordGame = () => {
                     Hints Remaining: {hints}{" "} 
                     <button 
                         onClick={hintFunction} 
-                        disabled={hints === 0} 
+                        disabled={hints === 0 || displayWord} 
                         className="hint-button"
                     > 
                         Get Hint 
