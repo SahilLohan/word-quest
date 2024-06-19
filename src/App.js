@@ -1,5 +1,5 @@
 //App.js 
-import React, { useState, useEffect } from "react"; 
+import React, { useRef,useState, useEffect } from "react"; 
 import "./App.css"; 
 import sampleWords from "./Data/Words"
   
