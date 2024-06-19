@@ -17,13 +17,16 @@ const WordGame = () => {
     const [displayWord, setDisplayWord] = useState(false); 
     const [chances, setChances] = useState(3);
     const [wrongGuesses, setWrongGuesses] = useState(0); 
-  
-    useEffect(() => { 
-        if (wrongGuesses >= 3) { 
-            window.alert("Game Over! You made too many wrong guesses."); 
+    const guessFunctionRef = useRef(guessFunction);
+
+    useEffect(() => {
+        const guessFunction = guessFunctionRef.current;
+
+        if (wrongGuesses >= 3) {
+            window.alert("Game Over! You made too many wrong guesses.");
             guessFunction();
-        } 
-    }, [wrongGuesses]); 
+        }
+    }, [wrongGuesses, guessFunctionRef]);
   
     const letterSelectFunction = (letter) => { 
         if (!chosenLetters.includes(letter)) { 
